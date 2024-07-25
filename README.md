@@ -10,11 +10,12 @@ I used CUDA 11. Can install from NVIDIA website.
 
 ### Installations
 
-Install the correct version of pytorch, LangChain, transformers.
+Install the correct version of pytorch, LangChain, transformers. Make sure to have right version of CUDA with pytorch.
+
+Both CUDA and Tesseract-OCR need to be added to PATH.
 
 ```
-pip install torch torchvision
-pip install langchain
-pip install transformers
+conda install langchain
+conda install transformers
 ```
 
