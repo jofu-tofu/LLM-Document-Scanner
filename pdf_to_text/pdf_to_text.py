@@ -9,10 +9,15 @@ file_name = args[1]
 pdf_data_path = "./pdf_data/" + file_name + ".pdf"
 text_data_path = "./text_data/" + file_name + ".txt"
 
+def clean_text(text):
+    text = text.replace("\n", " ")
+    text = text.replace("\x0c", " ")
+    return text
+
 def extract_text_from_pdf(pdf_path):
     try:
         # Convert PDF to images
-        images = convert_from_path(pdf_path, dpi=150)  # Adjust DPI if needed
+        images = convert_from_path(pdf_path, dpi=300)  # Adjust DPI if needed
     except Exception as e:
         print(f"Error converting PDF to images: {e}")
         return None
@@ -24,10 +29,10 @@ def extract_text_from_pdf(pdf_path):
             pil_image = image.convert('RGB')
             # Process the image and generate pixel values
             addText = image_to_string(pil_image)
+            addText = clean_text(addText)
             text += addText
         except Exception as e:
             print(f"Error processing image: {e}")
-
     return text
 
 
